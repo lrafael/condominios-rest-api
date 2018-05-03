@@ -44,7 +44,7 @@ public class ApartamentoResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Apartamento> buscarApartamentoPeloId(@PathVariable Long id) {
-		Apartamento apartamento = apartamentoRepository.findOne(id);
+		Apartamento apartamento = apartamentoRepository.findById(id).orElse(null);
 		return apartamento != null ? ResponseEntity.ok(apartamento) : ResponseEntity.notFound().build();
 	}
 

@@ -14,10 +14,10 @@ public enum Estado {
 		this.sigla = sigla;
 	}
 
-	public static Estado getEstado(int id) {
+	public static Estado getEstado(String sigla) {
 		Estado estado = null;
 		for (Estado item : Estado.values()) {
-			if (item.getCodigo() == id) {
+			if (item.getSigla() == sigla) {
 				estado = item;
 				break;
 			}

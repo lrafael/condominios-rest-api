@@ -57,8 +57,7 @@ public class Endereco implements Serializable {
 	}
 
 	public String getEstado() {
-		Estado.getEstado(this.estado);
-		return ;
+		return Estado.getEstado(this.estado).getDescricao();
 	}
 
 	public void setEstado(String estado) {

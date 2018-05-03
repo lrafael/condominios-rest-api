@@ -43,7 +43,7 @@ public class EnderecoResource {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Endereco> buscarEnderecoPeloId(@PathVariable Long id) {
-		Endereco endereco = enderecoRepository.findOne(id);
+		Endereco endereco = enderecoRepository.findById(id).orElse(null);
 		return endereco != null ? ResponseEntity.ok(endereco) : ResponseEntity.notFound().build();
 	}
 
