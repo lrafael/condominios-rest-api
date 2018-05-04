@@ -1,4 +1,4 @@
-package com.condominios.api.resource;
+package com.condominios.api.repository;
 
 public interface ChamadoRepository {
 
