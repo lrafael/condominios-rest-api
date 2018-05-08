@@ -1,80 +1,74 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: undefined
 
 # condominioapi
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+API para controle de chamados
 
-## Questions Collection [/questions]
+## Pessoas [/pessoas]
 
-### List All Questions [GET]
+### List All Pessoas [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "id": 1,
+                "nome": "Ainsley",
+                "cpf": "08477818606",
+                "sexo": "FEMININO",
+                "celular": "88-91408-7840",
+                "telefone": "33-4779-6839",
+                "email": "elit.erat@auctorMaurisvel.org",
+                "dataNascimento": "2017-12-04",
+                "sindico": false
+            },
+            {
+                "id": 2,
+                "nome": "Damian",
+                "cpf": "80254766854",
+                "sexo": "MASCULINO",
+                "celular": "83-99885-9634",
+                "telefone": "46-7833-9432",
+                "email": "eget@velmauris.edu",
+                "dataNascimento": "2017-04-06",
+                "sindico": true
             }
         ]
 
-### Create a New Question [POST]
+### Create a New Pessoa [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Para adicionar uma nova pessoa.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "nome": "McKenzie",
+            "cpf": "87639848814",
+            "sexo": "MASCULINO",
+            "celular": "56-90069-1937",
+            "telefone": "54-7809-2975",
+            "email": "fermentum.arcu@commodo.com",
+            "dataNascimento": "2017-02-09",
+            "sindico": false
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /pessoas/3
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 3,
+                "nome": "McKenzie",
+                "cpf": "87639848814",
+                "sexo": "MASCULINO",
+                "celular": "56-90069-1937",
+                "telefone": "54-7809-2975",
+                "email": "fermentum.arcu@commodo.com",
+                "dataNascimento": "2017-02-09",
+                "sindico": false
             }
