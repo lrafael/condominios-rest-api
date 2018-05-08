@@ -1,13 +1,19 @@
 package com.condominios.api.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "condominio")
@@ -19,15 +25,29 @@ public class Condominio implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String nome;
+	
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
-	@Column(name = "numeroblocos")
+	@Column(name = "numero_blocos")
 	private Long numeroBlocos;
 	
-	@Column(name = "numeroapartamentoporbloco")
+	@Column(name = "numero_apartamentos_por_bloco")
 	private Long numeroApartamentosPorBloco;
+	
+	@OneToMany(targetEntity = Apartamento.class, mappedBy = "condominio")
+    private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
+	
+	@OneToMany(targetEntity = Chamado.class, mappedBy = "condominio")
+    private List<Chamado> chamados = new ArrayList<Chamado>();
 
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -68,10 +88,28 @@ public class Condominio implements Serializable {
 		this.numeroApartamentosPorBloco = numeroApartamentosPorBloco;
 	}
 
+	public List<Apartamento> getApartamentos() {
+		return apartamentos;
+	}
+
+	public void setApartamentos(List<Apartamento> apartamentos) {
+		this.apartamentos = apartamentos;
+	}
+
+	public List<Chamado> getChamados() {
+		return chamados;
+	}
+
+	public void setChamados(List<Chamado> chamados) {
+		this.chamados = chamados;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((apartamentos == null) ? 0 : apartamentos.hashCode());
+		result = prime * result + ((chamados == null) ? 0 : chamados.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -89,6 +127,16 @@ public class Condominio implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Condominio other = (Condominio) obj;
+		if (apartamentos == null) {
+			if (other.apartamentos != null)
+				return false;
+		} else if (!apartamentos.equals(other.apartamentos))
+			return false;
+		if (chamados == null) {
+			if (other.chamados != null)
+				return false;
+		} else if (!chamados.equals(other.chamados))
+			return false;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
@@ -116,5 +164,8 @@ public class Condominio implements Serializable {
 			return false;
 		return true;
 	}
+	
+
+	
 
 }

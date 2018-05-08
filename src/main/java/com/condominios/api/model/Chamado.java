@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,14 @@ public class Chamado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
+	
+	@ManyToOne
+	@JoinColumn(name = "condominio_id")
 	private Condominio condominio;
+	
 	private String observacao;
 
 	private int criticidade;
@@ -31,6 +39,9 @@ public class Chamado implements Serializable {
 
 	private boolean ativo;
 
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

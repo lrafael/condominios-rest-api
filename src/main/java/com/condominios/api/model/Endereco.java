@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -18,10 +19,16 @@ public class Endereco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String logradouro;
+	
+	@NotNull
 	private String bairro;
+	
+	@NotNull
 	private String cidade;
 
+	@NotNull
 	private String estado;
 
 	public Long getId() {

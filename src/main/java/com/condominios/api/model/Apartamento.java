@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +23,15 @@ public class Apartamento implements Serializable {
 	private Long numero;
 	private String bloco;
 	private Long andar;
+	
+	@ManyToOne
+	@JoinColumn(name = "condominio_id")
+	private Condominio condominio;
 
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,12 +64,21 @@ public class Apartamento implements Serializable {
 		this.andar = andar;
 	}
 
+	public Condominio getCondominio() {
+		return condominio;
+	}
+
+	public void setCondominio(Condominio condominio) {
+		this.condominio = condominio;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((andar == null) ? 0 : andar.hashCode());
 		result = prime * result + ((bloco == null) ? 0 : bloco.hashCode());
+		result = prime * result + ((condominio == null) ? 0 : condominio.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		return result;
@@ -83,6 +102,11 @@ public class Apartamento implements Serializable {
 			if (other.bloco != null)
 				return false;
 		} else if (!bloco.equals(other.bloco))
+			return false;
+		if (condominio == null) {
+			if (other.condominio != null)
+				return false;
+		} else if (!condominio.equals(other.condominio))
 			return false;
 		if (id == null) {
 			if (other.id != null)

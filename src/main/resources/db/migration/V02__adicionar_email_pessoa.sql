@@ -1,1 +1,0 @@
-ALTER TABLE pessoa ADD COLUMN email VARCHAR(50);

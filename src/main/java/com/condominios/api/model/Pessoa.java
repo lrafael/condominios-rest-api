@@ -2,6 +2,8 @@ package com.condominios.api.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pessoa")
@@ -22,21 +26,35 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String nome;
+	
+	@NotNull
 	private String cpf;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Sexo sexo;
+	
 	private String celular;
 	private String telefone;
+	
+	@NotNull
 	private String email;
 
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
-	@Column(name = "issindico")
+	@Column(name = "is_sindico")
 	private boolean isSindico;
+	
+	@OneToMany(targetEntity=Chamado.class, mappedBy="pessoa")
+    private List<Chamado> chamados = new ArrayList<Chamado>();
 
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -109,8 +127,12 @@ public class Pessoa implements Serializable {
 		this.isSindico = isSindico;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Chamado> getChamados() {
+		return chamados;
+	}
+
+	public void setChamados(List<Chamado> chamados) {
+		this.chamados = chamados;
 	}
 
 	@Override
@@ -118,6 +140,7 @@ public class Pessoa implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
+		result = prime * result + ((chamados == null) ? 0 : chamados.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
@@ -142,6 +165,11 @@ public class Pessoa implements Serializable {
 			if (other.celular != null)
 				return false;
 		} else if (!celular.equals(other.celular))
+			return false;
+		if (chamados == null) {
+			if (other.chamados != null)
+				return false;
+		} else if (!chamados.equals(other.chamados))
 			return false;
 		if (cpf == null) {
 			if (other.cpf != null)
@@ -180,5 +208,5 @@ public class Pessoa implements Serializable {
 		return true;
 	}
 
-
+	
 }
