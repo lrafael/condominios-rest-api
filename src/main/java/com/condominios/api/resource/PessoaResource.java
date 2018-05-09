@@ -42,7 +42,7 @@ public class PessoaResource {
 			HttpServletResponse response) {
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().
-				path("/{codigo}").buildAndExpand(pessoa.getId()).toUri();
+				path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		response.setHeader("Location", uri.toASCIIString());
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
 	}

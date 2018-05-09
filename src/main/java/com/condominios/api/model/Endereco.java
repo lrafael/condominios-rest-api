@@ -3,6 +3,8 @@ package com.condominios.api.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,8 @@ public class Endereco implements Serializable {
 	private String cidade;
 
 	@NotNull
-	private String estado;
+	@Enumerated(EnumType.STRING)
+	private Estado estado;
 
 	public Long getId() {
 		return id;
@@ -63,11 +66,11 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public String getEstado() {
-		return Estado.getEstado(this.estado).getDescricao();
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 

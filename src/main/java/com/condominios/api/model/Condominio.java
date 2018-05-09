@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "condominio")
 public class Condominio implements Serializable {
@@ -28,7 +30,7 @@ public class Condominio implements Serializable {
 	@NotNull
 	private String nome;
 	
-	@OneToOne
+	@OneToOne(optional = false)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
@@ -38,9 +40,11 @@ public class Condominio implements Serializable {
 	@Column(name = "numero_apartamentos_por_bloco")
 	private Long numeroApartamentosPorBloco;
 	
+	@JsonIgnore
 	@OneToMany(targetEntity = Apartamento.class, mappedBy = "condominio")
     private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
 	
+	@JsonIgnore
 	@OneToMany(targetEntity = Chamado.class, mappedBy = "condominio")
     private List<Chamado> chamados = new ArrayList<Chamado>();
 
@@ -164,8 +168,6 @@ public class Condominio implements Serializable {
 			return false;
 		return true;
 	}
-	
 
 	
-
 }
