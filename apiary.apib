@@ -1,0 +1,74 @@
+FORMAT: 1A
+HOST: undefined
+
+# condominioapi
+
+API para controle de chamados
+
+## Pessoas [/pessoas]
+
+### List All Pessoas [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "nome": "Ainsley",
+                "cpf": "08477818606",
+                "sexo": "FEMININO",
+                "celular": "88-91408-7840",
+                "telefone": "33-4779-6839",
+                "email": "elit.erat@auctorMaurisvel.org",
+                "dataNascimento": "2017-12-04",
+                "sindico": false
+            },
+            {
+                "id": 2,
+                "nome": "Damian",
+                "cpf": "80254766854",
+                "sexo": "MASCULINO",
+                "celular": "83-99885-9634",
+                "telefone": "46-7833-9432",
+                "email": "eget@velmauris.edu",
+                "dataNascimento": "2017-04-06",
+                "sindico": true
+            }
+        ]
+
+### Create a New Pessoa [POST]
+
+Para adicionar uma nova pessoa.
+
++ Request (application/json)
+
+        {
+            "nome": "McKenzie",
+            "cpf": "87639848814",
+            "sexo": "MASCULINO",
+            "celular": "56-90069-1937",
+            "telefone": "54-7809-2975",
+            "email": "fermentum.arcu@commodo.com",
+            "dataNascimento": "2017-02-09",
+            "sindico": false
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /pessoas/3
+
+    + Body
+
+            {
+                "id": 3,
+                "nome": "McKenzie",
+                "cpf": "87639848814",
+                "sexo": "MASCULINO",
+                "celular": "56-90069-1937",
+                "telefone": "54-7809-2975",
+                "email": "fermentum.arcu@commodo.com",
+                "dataNascimento": "2017-02-09",
+                "sindico": false
+            }
