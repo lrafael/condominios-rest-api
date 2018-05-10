@@ -29,6 +29,13 @@ public class ApartamentoResource {
 	public List<Apartamento> listarApartamentos() {
 		return apartamentoRepository.findAll();
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Apartamento> buscarApartamentoPeloId(@PathVariable Long id) {
+		Apartamento apartamento = apartamentoRepository.findById(id).orElse(null);
+		return apartamento != null ? ResponseEntity.ok(apartamento) : ResponseEntity.notFound().build();
+	}
+	
 
 	@PostMapping
 	public ResponseEntity<Apartamento> cadastrarApartamento(@RequestBody Apartamento apartamento,
@@ -42,10 +49,6 @@ public class ApartamentoResource {
 		return ResponseEntity.created(uri).body(apartamentoSalvo);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Apartamento> buscarApartamentoPeloId(@PathVariable Long id) {
-		Apartamento apartamento = apartamentoRepository.findById(id).orElse(null);
-		return apartamento != null ? ResponseEntity.ok(apartamento) : ResponseEntity.notFound().build();
-	}
+
 
 }

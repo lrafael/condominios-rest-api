@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "pessoa")
 public class Pessoa implements Serializable {
@@ -47,6 +49,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "is_sindico")
 	private boolean isSindico;
 	
+	@JsonIgnore
 	@OneToMany(targetEntity=Chamado.class, mappedBy="pessoa")
     private List<Chamado> chamados = new ArrayList<Chamado>();
 

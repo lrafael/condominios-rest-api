@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,8 @@ public class CondominioResource {
 	
 	@GetMapping("/{id}")
 	public Condominio buscarPeloId(@PathVariable Long id) {
-		return condominioRepository.findById(id).orElse(null);
+		return condominioRepository.findById(id).orElseThrow(
+				() -> new EmptyResultDataAccessException(1));
 	}
 	
 	@PostMapping
