@@ -2,7 +2,7 @@
 INSERT INTO pessoa (nome, cpf, sexo, celular, telefone, data_nascimento, is_sindico, email) values ('Ainsley', '08477818606', 1, '88-91408-7840', '33-4779-6839', '12/04/2017', false, 'elit.erat@auctorMaurisvel.org');
 INSERT INTO pessoa (nome, cpf, sexo, celular, telefone, data_nascimento, is_sindico, email) values ('Damian', '80254766854', 0, '83-99885-9634', '46-7833-9432', '04/06/2017', true, 'eget@velmauris.edu');
 INSERT INTO pessoa (nome, cpf, sexo, celular, telefone, data_nascimento, is_sindico, email) values ('McKenzie', '87639848814', 0, '56-90069-1937', '54-7809-2975', '02/09/2017', false, 'fermentum.arcu@commodo.com');
-INSERT INTO pessoa (nome, cpf, sexo, celular, telefone, data_nascimento, is_sindico, email) values ('Aiko', '75264482330', 0, '73-97333-5978', '99-2665-6821', '08/21/2017', true, 'nibh@Aliquamrutrumlorem.com');
+INSERT INTO pessoa (nome, cpf, sexo, celular, telefone, data_nascimento, is_sindico, email) values ('Aiko', '75264482330', 0, '73-97333-5978', '99-2665-6821', '08/11/2017', true, 'nibh@Aliquamrutrumlorem.com');
 
 --Endereço
 INSERT INTO endereco (logradouro, bairro, cidade, estado) values ('Rua Maria Teresa Dias da Silva, 224', 'Loteamento Residencial Barão do Café', 'Campinas', 'SP');
