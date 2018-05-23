@@ -30,22 +30,39 @@ public class ApartamentoResource {
 
 	@Autowired
 	private ApartamentoRepository apartamentoRepository;
-	
+
 	@Autowired
 	private ApartamentoService apartamentoService;
 
+	/**
+	 * Retorna a lista de apartamentos
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public List<Apartamento> listarApartamentos() {
 		return apartamentoRepository.findAll();
 	}
-	
+
+	/**
+	 * Retorna um apartamento baseado no id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Apartamento> buscarApartamentoPeloId(@PathVariable Long id) {
 		Apartamento apartamento = apartamentoRepository.findById(id).orElse(null);
 		return apartamento != null ? ResponseEntity.ok(apartamento) : ResponseEntity.notFound().build();
 	}
-	
 
+	/**
+	 * Cadastra um novo apartamento
+	 * 
+	 * @param apartamento
+	 * @param response
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<Apartamento> cadastrarApartamento(@RequestBody Apartamento apartamento,
 			HttpServletResponse response) {
@@ -57,19 +74,27 @@ public class ApartamentoResource {
 
 		return ResponseEntity.created(uri).body(apartamentoSalvo);
 	}
-	
+
+	/**
+	 * Deleta um apartamento baseado no id
+	 * 
+	 * @param id
+	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removerApartamento(@PathVariable Long id) {
 		apartamentoRepository.deleteById(id);
 	}
-	
+
+	/**
+	 * Altera um objeto apartamento
+	 * @param id
+	 * @param apartamento
+	 * @return
+	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<Apartamento> atualizar(@PathVariable Long id, 
-			@Valid @RequestBody Apartamento apartamento) {
-		
+	public ResponseEntity<Apartamento> atualizar(@PathVariable Long id, @Valid @RequestBody Apartamento apartamento) {
 		return ResponseEntity.ok(apartamentoService.atualizar(id, apartamento));
 	}
-
 
 }

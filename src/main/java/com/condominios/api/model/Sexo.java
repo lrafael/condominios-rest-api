@@ -1,9 +1,11 @@
 package com.condominios.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Sexo {
 
-	MASCULINO(0, "Masculino"), 
-	FEMININO(1, "Feminino");
+	MASCULINO(0, "Masculino"), FEMININO(1, "Feminino");
 
 	private int codigo;
 	private String descricao;
@@ -12,7 +14,7 @@ public enum Sexo {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
-	
+
 	public static Sexo getSexo(int id) {
 		Sexo estado = null;
 		for (Sexo item : Sexo.values()) {

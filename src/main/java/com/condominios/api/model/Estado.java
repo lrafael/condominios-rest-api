@@ -1,5 +1,8 @@
 package com.condominios.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Estado {
 
 	SP(1, "São Paulo", "SP");

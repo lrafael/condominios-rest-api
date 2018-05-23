@@ -23,10 +23,10 @@ public class Endereco implements Serializable {
 
 	@NotNull
 	private String logradouro;
-	
+
 	@NotNull
 	private String bairro;
-	
+
 	@NotNull
 	private String cidade;
 

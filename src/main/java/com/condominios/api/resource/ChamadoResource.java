@@ -1,6 +1,7 @@
 package com.condominios.api.resource;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.condominios.api.model.Chamado;
+import com.condominios.api.model.Criticidade;
 import com.condominios.api.repository.ChamadoRepository;
 import com.condominios.api.service.ChamadoService;
 
@@ -68,6 +70,11 @@ public class ChamadoResource {
 	public ResponseEntity<Chamado> atualizar(@PathVariable Long id, 
 			@Valid @RequestBody Chamado chamado) {
 		return ResponseEntity.ok(chamadoService.atualizar(id, chamado));
+	}
+	
+	@GetMapping("/criticidades")
+	public List<Criticidade> listarCriticidades() {
+		return Arrays.asList(Criticidade.values());
 	}
 
 }

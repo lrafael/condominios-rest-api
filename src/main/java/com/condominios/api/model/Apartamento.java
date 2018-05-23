@@ -15,23 +15,19 @@ import javax.persistence.Table;
 public class Apartamento implements Serializable {
 
 	private static final long serialVersionUID = -6671795399305538062L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Long numero;
 	private String bloco;
 	private Long andar;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "condominio_id")
 	private Condominio condominio;
 
-	
-	
-	
-	
 	public Long getId() {
 		return id;
 	}

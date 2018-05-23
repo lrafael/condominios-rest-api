@@ -1,6 +1,7 @@
 package com.condominios.api.resource;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.condominios.api.model.Condominio;
+import com.condominios.api.model.Estado;
 import com.condominios.api.repository.CondominioRepository;
 import com.condominios.api.service.CondominioService;
 
@@ -68,6 +70,11 @@ public class CondominioResource {
 	public ResponseEntity<Condominio> atualizar(@PathVariable Long id, 
 			@Valid @RequestBody Condominio condominio) {
 		return ResponseEntity.ok(condominioService.atualizar(id, condominio));
+	}
+	
+	@GetMapping("/estados")
+	public List<Estado> listarEstados() {
+		return Arrays.asList(Estado.values());
 	}
 
 }

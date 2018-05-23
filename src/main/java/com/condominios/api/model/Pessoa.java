@@ -30,16 +30,16 @@ public class Pessoa implements Serializable {
 
 	@NotNull
 	private String nome;
-	
+
 	@NotNull
 	private String cpf;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Sexo sexo;
-	
+
 	private String celular;
 	private String telefone;
-	
+
 	@NotNull
 	private String email;
 
@@ -48,16 +48,15 @@ public class Pessoa implements Serializable {
 
 	@Column(name = "is_sindico")
 	private boolean isSindico;
-	
-	@JsonIgnore
-	@OneToMany(targetEntity=Chamado.class, mappedBy="pessoa")
-    private List<Chamado> chamados = new ArrayList<Chamado>();
 
-	
-	
-	
-	
-	
+	@JsonIgnore
+	@OneToMany(targetEntity = Chamado.class, mappedBy = "pessoa")
+	private List<Chamado> chamados;
+
+	public Pessoa() {
+		this.chamados = new ArrayList<Chamado>();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -211,5 +210,4 @@ public class Pessoa implements Serializable {
 		return true;
 	}
 
-	
 }

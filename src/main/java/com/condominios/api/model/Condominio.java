@@ -20,38 +20,39 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "condominio")
 public class Condominio implements Serializable {
-	
+
 	private static final long serialVersionUID = -1807249279196080220L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String nome;
-	
+
 	@OneToOne(optional = false)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
+
 	@Column(name = "numero_blocos")
 	private Long numeroBlocos;
-	
+
 	@Column(name = "numero_apartamentos_por_bloco")
 	private Long numeroApartamentosPorBloco;
-	
+
 	@JsonIgnore
 	@OneToMany(targetEntity = Apartamento.class, mappedBy = "condominio")
-    private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
-	
+	private List<Apartamento> apartamentos;
+
 	@JsonIgnore
 	@OneToMany(targetEntity = Chamado.class, mappedBy = "condominio")
-    private List<Chamado> chamados = new ArrayList<Chamado>();
+	private List<Chamado> chamados;
 
-	
-	
-	
-	
+	public Condominio() {
+		this.apartamentos = new ArrayList<Apartamento>();
+		this.chamados = new ArrayList<Chamado>();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -169,5 +170,4 @@ public class Condominio implements Serializable {
 		return true;
 	}
 
-	
 }

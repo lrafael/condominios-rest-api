@@ -1,10 +1,11 @@
 package com.condominios.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Criticidade {
 
-	BAIXA(1, "Baixa"), 
-	ALTA(2, "Alta"), 
-	MUITO_ALTA(3, "Muito Alta");
+	BAIXA(1, "Baixa"), ALTA(2, "Alta"), MUITO_ALTA(3, "Muito Alta");
 
 	private int codigo;
 	private String descricao;
@@ -13,7 +14,7 @@ public enum Criticidade {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
-	
+
 	public static Criticidade getCriticidade(int id) {
 		Criticidade estado = null;
 		for (Criticidade item : Criticidade.values()) {

@@ -25,11 +25,11 @@ public class Chamado implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "condominio_id")
 	private Condominio condominio;
-	
+
 	private String observacao;
 
 	private int criticidade;
@@ -39,9 +39,6 @@ public class Chamado implements Serializable {
 
 	private boolean ativo;
 
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
