@@ -24,10 +24,10 @@ public class CondApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = { EnderecoInexistenteException.class })
 	protected ResponseEntity<Object> handleEndInexistente(RuntimeException ex, WebRequest request) {
 
-		String mensagemUsuraio = messageSource.getMessage("endereco.inexistente", null,
+		String mensagemUsuario = messageSource.getMessage("endereco.inexistente", null,
 				LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
-		Erro erro = new Erro(mensagemUsuraio, mensagemDesenvolvedor);
+		Erro erro = new Erro(mensagemUsuario, mensagemDesenvolvedor);
 
 		return handleExceptionInternal(ex, erro, new HttpHeaders(), 
 				HttpStatus.BAD_REQUEST, request);
@@ -50,11 +50,11 @@ public class CondApiExceptionHandler extends ResponseEntityExceptionHandler {
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
 		
-		String mensagemUsuraio = messageSource.getMessage("mensagem.invalida", null, 
+		String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null, 
 				LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = ex.getCause() != null ? 
 				ex.getCause().toString() : ex.toString();
-		Erro erro = new Erro(mensagemUsuraio, mensagemDesenvolvedor);
+		Erro erro = new Erro(mensagemUsuario, mensagemDesenvolvedor);
 		
 		return handleExceptionInternal(ex, erro, headers, HttpStatus.BAD_REQUEST, request);
 	}
@@ -63,25 +63,25 @@ public class CondApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(
 			EmptyResultDataAccessException ex, WebRequest request) {
 		
-		String mensagemUsuraio = messageSource.getMessage("recurso.nao-encontrado", null, 
+		String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado", null, 
 				LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = ex.toString();
-		Erro erro = new Erro(mensagemUsuraio, mensagemDesenvolvedor);
+		Erro erro = new Erro(mensagemUsuario, mensagemDesenvolvedor);
 		return handleExceptionInternal(ex, erro, new HttpHeaders(), HttpStatus.NOT_FOUND, 
 				request);
 	}
 	
 	public static class Erro {
-		private String mensagemUsuraio;
+		private String mensagemUsuario;
 		private String mensagemDesenvolvedor;
 
-		public Erro(String mensagemUsuraio, String mensagemDesenvolvedor) {
-			this.mensagemUsuraio = mensagemUsuraio;
+		public Erro(String mensagemUsuario, String mensagemDesenvolvedor) {
+			this.mensagemUsuario = mensagemUsuario;
 			this.mensagemDesenvolvedor = mensagemDesenvolvedor;
 		}
 
-		public String getMensagemUsuraio() {
-			return mensagemUsuraio;
+		public String getMensagemUsuario() {
+			return mensagemUsuario;
 		}
 
 		public String getMensagemDesenvolvedor() {

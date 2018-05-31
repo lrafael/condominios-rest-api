@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import com.condominios.api.model.Estado;
 import com.condominios.api.repository.CondominioRepository;
 import com.condominios.api.service.CondominioService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/condominios")
 public class CondominioResource {
